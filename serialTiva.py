@@ -12,16 +12,18 @@ while True:
   
   # get the incoming data
   incomingData = port.readline()
-  
-  # parse the incoming data
-  list = incomingData.split(' ');
-  ult_dist1 = float(list[1]) / 1000.0
-  ult_dist2 = float(list[2]) / 1000.0
-  posX = float(list[4]) / 1000.0
-  posY = float(list[5]) / 1000.0
-  posTheta = float(list[6]) / 1000.0
 
-  print "ult_dist1: ", ult_dist1, "\tult_dist2: ", ult_dist2, "\tposX: ", posX, "\tposY: ", posY, "\tposTheta: ", posTheta
+  # make sure some data is received
+  if incomingData:
+    # parse the incoming data
+    list = incomingData.split(' ')
+    ult_dist1 = float(list[1]) / 1000.0
+    ult_dist2 = float(list[2]) / 1000.0
+    posX = float(list[4]) / 1000.0
+    posY = float(list[5]) / 1000.0
+    posTheta = float(list[6]) / 1000.0
+
+    print "ult_dist1: ", ult_dist1, "\tult_dist2: ", ult_dist2, "\tposX: ", posX, "\tposY: ", posY, "\tposTheta: ", posTheta
 
   # prompt velocity commands from the terminal
   #input = raw_input("Enter velocity command: ")
