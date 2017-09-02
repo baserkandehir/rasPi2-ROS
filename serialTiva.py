@@ -1,12 +1,23 @@
 import serial
+import sys
+import signal
+
+def signal_handler(signal, frame):
+  print('Stopping the robot')
+  send = 'c ' + str(0) + '\r' + str(0) + '\r' + str(0) + '\r'
+  port.write(send)
+  sys.exit(0)
+
+signal.signal(signal.SIGINT, signal_handler)
 
 port = serial.Serial("/dev/ttyAMA0", baudrate=115200, timeout=3.0)
 
-Vx = 0.1
-Vy = 0.2
-Vang = 0
+#i = 0
 
-i = 0
+# get the velocity commands from command line arguments                                                                                                                                                           
+Vx = float(sys.argv[1])
+Vy = float(sys.argv[2])
+Vang = float(sys.argv[3])
 
 while True:
   
@@ -34,14 +45,14 @@ while True:
   #print "Vx: ", Vx, "Vy: ", Vy, "Vang: ", Vang
 
   # stop the robot after some time
-  if i > 1000:
-    Vx = 0
-    Vy = 0
-    Vang = 0
+  #if i > 1000:
+  #  Vx = 0
+  #  Vy = 0
+  #  Vang = 0
 
   # send the velocity command to robot
   send = 'c ' + str(int(Vx*1000)) + '\r' + str(int(Vy*1000)) + '\r' + str(int(Vang*1000)) + '\r'
   port.write(send)
 
   # increment the index
-  i = i + 1
+  #i = i + 1
