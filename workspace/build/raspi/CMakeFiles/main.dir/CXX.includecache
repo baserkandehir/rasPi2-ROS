@@ -11,4 +11,8 @@ ros/ros.h
 /home/ubuntu/rasPi2-ROS/workspace/src/raspi/ros/ros.h
 sensor_msgs/LaserScan.h
 /home/ubuntu/rasPi2-ROS/workspace/src/raspi/sensor_msgs/LaserScan.h
+math.h
+/home/ubuntu/rasPi2-ROS/workspace/src/raspi/math.h
+stdio.h
+/home/ubuntu/rasPi2-ROS/workspace/src/raspi/stdio.h
 

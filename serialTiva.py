@@ -14,10 +14,10 @@ port = serial.Serial("/dev/ttyAMA0", baudrate=115200, timeout=3.0)
 
 #i = 0
 
-# get the velocity commands from command line arguments                                                                                                                                                           
-Vx = float(sys.argv[1])
-Vy = float(sys.argv[2])
-Vang = float(sys.argv[3])
+# get the velocity commands from command line arguments
+#Vx = float(sys.argv[1])
+#Vy = float(sys.argv[2])
+#Vang = float(sys.argv[3])
 
 while True:
   
@@ -45,10 +45,28 @@ while True:
   #print "Vx: ", Vx, "Vy: ", Vy, "Vang: ", Vang
 
   # stop the robot after some time
-  #if i > 1000:
-  #  Vx = 0
-  #  Vy = 0
-  #  Vang = 0
+  #if i > 10:
+  #  send = 'c ' + str(0) + '\r' + str(0) + '\r' + str(0) + '\r'
+  #  port.write(send)
+  #  break;
+
+  Vx = 0
+  Vy = 0
+  Vang = 0
+
+  # read the velocity commands from the file
+  fileHandle = open('/home/ubuntu/rasPi2-ROS/out.txt', 'r')
+  lineList = fileHandle.readlines()
+  if lineList:
+    lastLine = lineList[-1]
+    if lastLine[0] is "V":
+      #print lastLine
+      lastLineList = lastLine.split(' ');  
+      #print lastLineList
+      Vx = float(lastLineList[1])
+      Vy = float(lastLineList[3])
+      #print "Vx: ", Vx, " Vy: ", Vy, "\n"
+  fileHandle.close()
 
   # send the velocity command to robot
   send = 'c ' + str(int(Vx*1000)) + '\r' + str(int(Vy*1000)) + '\r' + str(int(Vang*1000)) + '\r'
