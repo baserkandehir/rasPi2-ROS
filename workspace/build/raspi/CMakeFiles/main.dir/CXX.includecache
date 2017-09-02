@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ubuntu/rasPi2-ROS/workspace/src/raspi/main.cpp
+ros/ros.h
+/home/ubuntu/rasPi2-ROS/workspace/src/raspi/ros/ros.h
+sensor_msgs/LaserScan.h
+/home/ubuntu/rasPi2-ROS/workspace/src/raspi/sensor_msgs/LaserScan.h
+

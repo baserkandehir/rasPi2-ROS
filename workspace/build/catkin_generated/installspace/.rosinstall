@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/ubuntu/rasPi2-ROS/workspace/install/setup.sh

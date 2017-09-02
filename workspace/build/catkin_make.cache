@@ -1,0 +1,2 @@
+raspi
+-DCATKIN_DEVEL_PREFIX=/home/ubuntu/rasPi2-ROS/workspace/devel -DCMAKE_INSTALL_PREFIX=/home/ubuntu/rasPi2-ROS/workspace/install -G Unix Makefiles

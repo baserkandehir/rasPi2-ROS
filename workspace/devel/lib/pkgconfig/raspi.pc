@@ -1,0 +1,8 @@
+prefix=/home/ubuntu/rasPi2-ROS/workspace/devel
+
+Name: raspi
+Description: Description of raspi
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/ubuntu/rasPi2-ROS/workspace/devel/lib 
+Requires: 
