@@ -1,6 +1,7 @@
 import serial
 import sys
 import signal
+import struct
 
 def signal_handler(signal, frame):
   print('Stopping the robot')
@@ -22,17 +23,16 @@ port = serial.Serial("/dev/ttyAMA0", baudrate=115200, timeout=3.0)
 while True:
   
   # get the incoming data
-  incomingData = port.readline()
+  incomingData = port.read(31)
 
   # make sure some data is received
   if incomingData:
     # parse the incoming data
-    list = incomingData.split(' ')
-    ult_dist1 = float(list[1]) / 1000.0
-    ult_dist2 = float(list[2]) / 1000.0
-    posX = float(list[4]) / 1000.0
-    posY = float(list[5]) / 1000.0
-    posTheta = float(list[6]) / 1000.0
+    ult_dist1 = struct.unpack('<f', incomingData[2:6])[0]
+    ult_dist2 = struct.unpack('<f', incomingData[7:11])[0]
+    posX = struct.unpack('<f', incomingData[14:18])[0]
+    posY = struct.unpack('<f', incomingData[19:23])[0]
+    posTheta = struct.unpack('<f', incomingData[24:28])[0]
 
     print "ult_dist1: ", ult_dist1, "\tult_dist2: ", ult_dist2, "\tposX: ", posX, "\tposY: ", posY, "\tposTheta: ", posTheta
 
@@ -69,7 +69,7 @@ while True:
   fileHandle.close()
 
   # send the velocity command to robot
-  send = 'c ' + str(int(Vx*1000)) + '\r' + str(int(Vy*1000)) + '\r' + str(int(Vang*1000)) + '\r'
+  send = 'c ' + str(Vx) + '\r' + str(Vy) + '\r' + str(Vang) + '\r'
   port.write(send)
 
   # increment the index

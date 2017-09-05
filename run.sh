@@ -13,12 +13,12 @@ source ~/rasPi2-ROS/workspace/devel/setup.bash
 echo -e "${g}Running roscore...${w}"
 roscore &
 sleep 3
-echo -e "${g}Running hokuyo_node...${w}"
-rosrun hokuyo_node hokuyo_node &
-sleep 3
 echo -e "${g}Running main node...${w}" 
 # redirect stdout to a file
 rosrun raspi main &> ~/rasPi2-ROS/out.txt &
+sleep 3
+echo -e "${g}Running hokuyo_node...${w}"
+rosrun hokuyo_node hokuyo_node &
 sleep 3
 echo -e "${g}Running serial node...${w}" 
 python ~/rasPi2-ROS/serialTiva.py

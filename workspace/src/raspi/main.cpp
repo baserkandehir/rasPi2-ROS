@@ -12,7 +12,7 @@ float min_range = 0.02;
 float angle_offset = 12;
 
 // threshold distance for moving robot
-float dist_threshold = 0.2;
+float dist_threshold = 0.4;
 
 void laserScanCallback(const sensor_msgs::LaserScan::ConstPtr& scan)
 {
@@ -42,8 +42,8 @@ void laserScanCallback(const sensor_msgs::LaserScan::ConstPtr& scan)
   // calculate robot commands based on angle
   if (min < dist_threshold)
   {
-    Vx = 0.25*sin((angle - angle_offset)/57.3);
-    Vy = 0.25*cos((angle - angle_offset)/57.3);
+    Vx = 0.25*sin((angle + angle_offset)/57.3);
+    Vy = -0.25*cos((angle + angle_offset)/57.3);
   }
   else
   {
